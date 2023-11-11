@@ -16,12 +16,27 @@ const TranscribeAudio = ({ audioFile }) => {
   // Ensure that audioFile is defined before accessing its properties
   const audioFileName = audioFile ? audioFile.name : 'Unknown Audio';
 
-  // go back 
+  // Go back
   const handleGoBack = () => {
     // Send 'go-back' message to the main process
     ipcRenderer.send('go-back');
   };
 
+  // Functions for the three buttons
+  const handleSkip = () => {
+    // Implement skip logic
+    alert('Skipped!');
+  };
+
+  const handleEdit = () => {
+    // Implement edit logic
+    alert('Editing...');
+  };
+
+  const handleUpload = () => {
+    // Implement upload logic
+    alert('Uploading...');
+  };
 
   return (
     <div className="container center-align">
@@ -62,7 +77,29 @@ const TranscribeAudio = ({ audioFile }) => {
           Save Transcription
         </button>
 
-        <button style={{display: 'flex', alignItems: 'left', marginTop: '10px'}} onClick={handleGoBack}>Go Back</button>
+        {/* Buttons for Skip, Edit, and Upload */}
+        <div style={{ position: 'absolute', bottom: '10px', right: '10px' }}>
+          <button
+            className="btn waves-effect waves-light teal"
+            onClick={handleSkip}
+            style={{ marginRight: '10px' }}
+          >
+            Skip
+          </button>
+          <button
+            className="btn waves-effect waves-light teal"
+            onClick={handleEdit}
+            style={{ marginRight: '10px' }}
+          >
+            Edit
+          </button>
+          <button
+            className="btn waves-effect waves-light teal"
+            onClick={handleUpload}
+          >
+            Upload
+          </button>
+        </div>
       </div>
     </div>
   );

@@ -1,22 +1,8 @@
-import React from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import Dashboard from './Dashboard';
-import Login from './Login';
-import AudioTranscription from './AudioTranscription';
-import TranscribeAudio from './TranscribeAudio';
-import ProfileMenu from './ProfileMenu';
+import { RouterProvider } from "react-router-dom";
+import routes from "./routes/routes";
 
 const App = () => {
-  return (
-      <Routes>
-        <Route path="/" element={<Login />} />
-        <Route path="/dashboard" element={<Dashboard />} />
-        <Route path="/profile" element={<ProfileMenu />} />
-        <Route path="/transcription/:actionNumber" element={<AudioTranscription />} />
-        <Route path="/transcribe/:audioId" element={<TranscribeAudio />} />
-       
-      </Routes>
-  );
+	return <RouterProvider router={routes} />;
 };
 
 export default App;

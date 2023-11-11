@@ -5,11 +5,13 @@ import ProfileMenu from "../ProfileMenu";
 import AudioTranscription from "../pages/AudioTranscription";
 import TranscribeAudio from "../pages/TranscribeAudio";
 import Login from "../pages/Login";
+import ErrorPage from "../pages/ErrorPage";
 
 const routes = createBrowserRouter([
 	{
 		path: "/",
 		element: <RootLayout />,
+		errorElement: <ErrorPage />,
 		children: [
 			{
 				path: "",

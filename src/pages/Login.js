@@ -7,6 +7,10 @@ const Login = () => {
 	const navigate = useNavigate();
 	const [email, setEmail] = useState("");
 	const [password, setPassword] = useState("");
+	const [credentials, setCredentials] = useState({
+		email: "",
+		password: "",
+	});
 	const [showPassword, setShowPassword] = useState(false);
 
 	const handleLogin = async () => {
@@ -24,67 +28,40 @@ const Login = () => {
 		}
 	};
 
+	const handleInputChange = (name, value) => {
+		setCredentials((prevState) => {
+			return {
+				...prevState,
+				[name]: value,
+			};
+		});
+	};
 	const togglePasswordVisibility = () => {
 		setShowPassword((prevShowPassword) => !prevShowPassword);
 	};
 
-	const styles = {
-		container: {
-			display: "flex",
-			flexDirection: "column",
-			alignItems: "center",
-			justifyContent: "center",
-			height: "100vh",
-			backgroundColor: "#f4f4f4",
-		},
-		form: {
-			width: "300px",
-			padding: "20px",
-			backgroundColor: "#fff",
-			borderRadius: "8px",
-			boxShadow: "0 0 10px rgba(0, 0, 0, 0.1)",
-			boxSizing: "border-box",
-		},
-		input: {
-			width: "100%",
-			marginBottom: "15px",
-			padding: "10px",
-			borderRadius: "4px",
-			border: "1px solid #ccc",
-			boxSizing: "border-box",
-		},
-		eyeIcon: {
-			position: "absolute",
-			right: "10px",
-			top: "50%",
-			transform: "translateY(-50%)",
-			cursor: "pointer",
-		},
-		button: {
-			width: "100%",
-			padding: "10px",
-			backgroundColor: "#4CAF50",
-			color: "#fff",
-			border: "none",
-			borderRadius: "4px",
-			cursor: "pointer",
-		},
-	};
 	return (
 		<div style={styles.container}>
 			<h1>Login</h1>
 			<form style={styles.form}>
 				<label>
 					Email:
-					<input type="text" value={email} onChange={(e) => setEmail(e.target.value)} style={styles.input} />
+					<input
+						type="text"
+						name="email"
+						value={credentials.email}
+						onChange={(e) => handleInputChange(e.target.name, e.target.value)}
+						style={styles.input}
+					/>
 				</label>
 				<label>
 					Password:
 					<div style={{ position: "relative" }}>
 						<input
 							type={showPassword ? "text" : "password"}
-							value={password}
-							onChange={(e) => setPassword(e.target.value)}
+							value={credentials.password}
+							name="password"
+							onChange={(e) => handleInputChange(e.target.name, e.target.value)}
 							style={styles.input}
 						/>
 						{showPassword ? (
@@ -103,3 +80,45 @@ const Login = () => {
 };
 
 export default Login;
+const styles = {
+	container: {
+		display: "flex",
+		flexDirection: "column",
+		alignItems: "center",
+		justifyContent: "center",
+		height: "100vh",
+		backgroundColor: "#f4f4f4",
+	},
+	form: {
+		width: "300px",
+		padding: "20px",
+		backgroundColor: "#fff",
+		borderRadius: "8px",
+		boxShadow: "0 0 10px rgba(0, 0, 0, 0.1)",
+		boxSizing: "border-box",
+	},
+	input: {
+		width: "100%",
+		marginBottom: "15px",
+		padding: "10px",
+		borderRadius: "4px",
+		border: "1px solid #ccc",
+		boxSizing: "border-box",
+	},
+	eyeIcon: {
+		position: "absolute",
+		right: "10px",
+		top: "50%",
+		transform: "translateY(-50%)",
+		cursor: "pointer",
+	},
+	button: {
+		width: "100%",
+		padding: "10px",
+		backgroundColor: "#4CAF50",
+		color: "#fff",
+		border: "none",
+		borderRadius: "4px",
+		cursor: "pointer",
+	},
+};

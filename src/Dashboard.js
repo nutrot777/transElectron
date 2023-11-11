@@ -1,6 +1,6 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
-import ProfileMenu from './ProfileMenu';
+
 
 const Dashboard = () => {
   const navigate = useNavigate();
@@ -69,7 +69,6 @@ const Dashboard = () => {
           </div>
         </div>
       </div>
-      <ProfileMenu onLogout={() => { /* Implement logout logic */ }} />
     </div>
   );
 };

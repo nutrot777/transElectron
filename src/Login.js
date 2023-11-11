@@ -1,18 +1,17 @@
-// Login.js
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { Navigate } from 'react-router-dom'; // Import Navigate
 import { FaEye, FaEyeSlash } from 'react-icons/fa';
 
 const Login = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [showPassword, setShowPassword] = useState(false);
-  const navigate = useNavigate();
+  const [isLoggedIn, setLoggedIn] = useState(false); // Add state for login status
 
   const handleLogin = () => {
     // Implement authentication logic here
     // For simplicity, let's assume login is successful
-    navigate('/dashboard');
+    setLoggedIn(true); // Set login status to true
   };
 
   const togglePasswordVisibility = () => {
@@ -61,6 +60,11 @@ const Login = () => {
       cursor: 'pointer',
     },
   };
+
+  // If logged in, navigate to /dashboard
+  if (isLoggedIn) {
+    return <Navigate to="/dashboard" />;
+  }
 
   return (
     <div style={styles.container}>
